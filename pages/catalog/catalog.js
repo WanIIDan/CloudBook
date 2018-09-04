@@ -1,10 +1,10 @@
-// pages/detail/detail.js
-import {fetch} from "../../utils/util.js"
+// pages/catalog/catalog.js
+import { fetch } from "../../utils/util.js"
 Page({
 
   data: {
-    bookId:"",
-    bookData:{},
+    bookId: "",
+    catalogData:[],
     isLoading: false
   },
 
@@ -17,24 +17,18 @@ Page({
   },
 
   getData() {
-    this.setData({
-      isLoading: true
-    })
-    fetch.get(`/book/${this.data.bookId}`).then(res => {
+    fetch.get(`/titles/${this.data.bookId}`).then(res => {
+      this.setData({
+        isLoading: true
+      })
       console.log(res)
       this.setData({
-        bookData: res,
+        catalogData: res.data,
         isLoading: false
       })
     })
   },
 
-  jumpCatalog() {
-    wx.navigateTo({
-      url: `/pages/catalog/catalog?id=${this.data.bookId}`
-    })
-  },
-  
   /**
    * 用户点击右上角分享
    */

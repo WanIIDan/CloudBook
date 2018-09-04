@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/detail/detail",
-    "pages/list/list"
+    "pages/catalog/catalog",
+    "pages/book/book"
   ],
   "window": {
     "backgroundTextStyle": "light",

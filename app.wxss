@@ -2,3 +2,13 @@
 .container {
   padding: 0 20rpx;
 } 
+
+.container .loading {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 998;
+  width: 350rpx;
+  height: 350rpx;
+}

@@ -1,0 +1,22 @@
+/* pages/catalog/catalog.wxss */
+
+.catalog {
+  font-size: 14px;
+  color: #333;
+}
+
+.catalog .link {
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid #333;
+}
+
+.loading {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 998;
+  width: 350rpx;
+  height: 350rpx;
+}
