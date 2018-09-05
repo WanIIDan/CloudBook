@@ -11,7 +11,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      bookId: options.id
+      bookId: options.id,
     })
     this.getData()
   },

@@ -10,7 +10,9 @@ Page({
     title:"",
     isShow:false,
     catalog:[],
-    isLoading: false    
+    isLoading: false,
+    font:40,
+    index:""
   },
 
   onLoad: function (options) {
@@ -26,14 +28,19 @@ Page({
   getData() {
     fetch.get(`/article/${this.data.titleId}`).then(res => {
       this.setData({
-        isLoading: true
+        isLoading: true,
+        isShow:false
       })
       console.log(res)
-      let data = app.towxml.toJson(res.data.article.content, 'markdown')
+      // let data = app.towxml.toJson(res.data.article.content, 'markdown')
+      //设置文档显示主题，默认'light'
+      // data.theme = 'dark';
       this.setData({
-        article: data,
+        // article: data,
+        article: res.data.article.content,
         title:res.data.title,
-        isLoading: false
+        isLoading: false,
+        index:res.data.article.index
       })
     })
   },
@@ -61,6 +68,54 @@ Page({
     })
     this.getData()
     this.toggleCatalog()
+  },
+
+  handleAdd() {
+    this.setData({
+      font:this.data.font+2
+    })
+  },
+
+  handleSub() {
+    if(this.data.font<28){
+      wx.showModal({
+        title: '温馨提示',
+        content: '字体太小影响视力哦~',
+        showCancel:false
+      })
+    }else{
+      this.setData({
+        font: this.data.font-2
+      })
+    }
+  },
+
+  handlePrev() {
+    let catalog = this.data.catalog
+    if(this.data.index-1<0){
+      wx.showToast({
+        title: '前面没有章节了',
+      })
+    }else{
+      this.setData({
+        titleId: catalog[this.data.index - 1]._id
+      })
+      this.getData()
+    }
+  },
+
+  handleNext() {
+    let catalog = this.data.catalog
+    if(catalog[this.data.index+1]){
+      this.setData({
+        titleId: catalog[this.data.index+1]._id
+      })
+      this.getData()
+    }else{
+      wx.showToast({
+        title: '最后一章啦！',
+      })
+    }
   },
 
   /**

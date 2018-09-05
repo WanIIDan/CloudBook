@@ -1,11 +1,11 @@
 /* pages/book/book.wxss */
-@import '/towxml/style/main.wxss';
+/* @import '/towxml/style/main.wxss';
 @import '/towxml/style/theme/light.wxss';
-@import '/towxml/style/theme/dark.wxss';
+@import '/towxml/style/theme/dark.wxss'; */
 @import '/static/iconfont/iconfont.wxss';
 
 .book .book-content {
-  padding-bottom: 100rpx;
+  padding: 0 40rpx 100rpx;
 }
 
 .book .menu {
@@ -42,6 +42,12 @@
   padding-bottom: 100rpx;
   border: 1px solid #f1f1f1;
   width: 680rpx;
+  transform: translate3d(-100%,0,0);
+  transition: transform .3s ease;
+}
+
+.active {
+  transform: translate3d(0,0,0)
 }
 
 .catalog-menu .catalog-item {

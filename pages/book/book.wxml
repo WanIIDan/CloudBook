@@ -5,22 +5,23 @@
   <image src='/static/img/Cube-1.2s-200px.svg' class='loading' wx:if="{{isLoading}}"></image>
   <view wx:else>
 
-    <view class='book-content'>
-      <template is="entry" data="{{...article}}" />
+    <view class='book-content' style='{{"font-size:"+font+"rpx"}}'>
+      <!-- <template is="entry" data="{{...article}}" /> -->
+      <wemark md="{{article}}"  highlight type="wemark"></wemark>
     </view>
 
-    <scroll-view scroll-y class='catalog-menu' wx:if="{{isShow}}">
+    <scroll-view scroll-y class="catalog-menu {{isShow ? 'active' : '' }}">
       <view class='catalog-item' wx:for="{{catalog}}" wx:key="{{index}}"  bindtap="handleGet" data-id="{{item._id}}">
         {{item.title}}
       </view>
     </scroll-view>
 
     <view class='menu'>
-      <view class='iconfont icon-fanhuishangyizhang'></view>
+      <view class='iconfont icon-fanhuishangyizhang' bindtap="handlePrev"></view>
       <view class='iconfont icon-mulu' bindtap="toggleCatalog"></view>
-      <view class='iconfont icon-yueduye_zitizengda'></view>
-      <view class='iconfont icon-yueduye_zitijianxiao'></view>
-      <view class='iconfont icon-xiayizhang'></view>
+      <view class='iconfont icon-yueduye_zitizengda' bindtap="handleAdd"></view>
+      <view class='iconfont icon-yueduye_zitijianxiao' bindtap="handleSub"></view>
+      <view class='iconfont icon-xiayizhang' bindtap="handleNext"></view>
     </view>
     <view class='mask' wx:if="{{isShow}}" bindtap="toggleCatalog"></view>    
 

@@ -7,8 +7,8 @@ Page({
     swiperData: [],
     mainContent:[],
     indicatorDots: true,
-    autoplay: false,
-    interval: 3000,
+    autoplay: true,
+    interval: 5000,
     duration: 500,
     isLoading:false
   },
@@ -23,6 +23,7 @@ Page({
       isLoading:true
     })
     fetch.get("/swiper").then(res=>{
+      console.log(res)
       this.setData({
         swiperData:res.data,
         isLoading:false
@@ -38,7 +39,7 @@ Page({
     fetch.get("/category/books").then(res=>{
       console.log(res)
       this.setData({
-        mainContent:res.data
+        mainContent:res.data,
       })
     })
   },
