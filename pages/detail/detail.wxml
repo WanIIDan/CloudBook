@@ -21,7 +21,7 @@
 
     <view class='book-desc'>
       <view class='title'>简介</view>
-      <view class='desc-main'>{{bookData.data.desc}}</view>
+       <view class='desc-main {{isShow ? "active" : ""}}' bindtap="handleShow">{{bookData.data.desc}}</view> 
     </view>
 
     <view class='book-catalog'>

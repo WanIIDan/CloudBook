@@ -5,7 +5,8 @@ Page({
   data: {
     bookId:"",
     bookData:{},
-    isLoading: false
+    isLoading: false,
+    isShow:true
   },
 
   onLoad: function (options) {
@@ -32,6 +33,12 @@ Page({
   jumpCatalog() {
     wx.navigateTo({
       url: `/pages/catalog/catalog?id=${this.data.bookId}`
+    })
+  },
+
+  handleShow() {
+    this.setData({
+      isShow:!this.data.isShow
     })
   },
   

@@ -72,6 +72,13 @@
   color: #333; 
 }
 
+.active {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4; 
+  overflow: hidden;
+}
+
 .book-catalog {
   padding: 0 20rpx;
   height: 100rpx;
@@ -103,11 +110,15 @@
   color: #444;
 }
 
-.read-btn-wrap .btn {
+.read-btn-wrap {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
+  /* padding: 20rpx; */
+}
+
+.read-btn-wrap .btn {
   background: #66f;
   color: #fff;
   font-size: 14px;
