@@ -39,7 +39,7 @@ Page({
     fetch.get("/category/books").then(res=>{
       console.log(res)
       this.setData({
-        mainContent:res.data,
+        mainContent:res.data  
       })
     })
   },
