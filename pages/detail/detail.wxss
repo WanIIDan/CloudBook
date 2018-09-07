@@ -30,6 +30,7 @@
 .book-t .img {
   width: 220rpx;
   height: 280rpx;
+  box-shadow:0 0 20rpx 0 #000;
 }
 
 .book-t .main-msg {

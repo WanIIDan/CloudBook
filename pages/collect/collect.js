@@ -1,4 +1,4 @@
-// pages/myStudy/myStudy.js
+// pages/collect/collect.js
 import { fetch, login } from "../../utils/util.js"
 
 Page({
@@ -20,21 +20,17 @@ Page({
   },
 
   getData() {
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
       this.setData({
         isLoading: true
       })
-      fetch.get("/readList").then(res => {
+      fetch.get("/collection").then(res => {
         resolve()
         console.log(res)
-        let arr = [...res.data]
-        arr = arr.map(item=>{
-          item.title.percent = Math.round((item.title.index/item.title.total)*100)
-          return item
-        })
         this.setData({
-          bookData: arr,
+          bookData: res.data,
           isLoading: false,
+          hasMore: false
         })
       })
     })
@@ -42,11 +38,34 @@ Page({
 
   getMoreData() {
     return new Promise((resolve, reject) => {
-      fetch.get("/readList").then(res => {
+      fetch.get("/collection").then(res => {
         resolve()
         console.log(res)
       })
     })
+  },
+
+  deleteCollect(e) {
+    let id = e.currentTarget.dataset.id
+    wx.showModal({
+      title: '提示',
+      content: '是否删除书籍',
+      showCancel: true,
+      success: function (res) {
+        if (res.confirm) {
+          fetch.del(`/collection/${id}`, id).then(res => {
+            wx.showToast({
+              title: '已取消收藏',
+              type: 'success',
+              duration: 1000
+            })
+          })
+        }else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    
   },
 
   onPullDownRefresh() {
@@ -64,19 +83,20 @@ Page({
   },
 
   onReachBottom() {
-    if (this.data.hasMore) {
-      this.getMoreData().then(res => {
-        this.setData({
-          hasMore: false
-        })
+    this.setData({
+      hasMore: true
+    })
+    this.getMoreData().then(res => {
+      this.setData({
+        hasMore: false
       })
-    }
+    })
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

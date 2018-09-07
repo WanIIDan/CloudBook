@@ -5,7 +5,8 @@
     "pages/catalog/catalog",
     "pages/book/book",
     "pages/myStudy/myStudy",
-    "pages/center/center"
+    "pages/center/center",
+    "pages/collect/collect"
   ],
   "window": {
     "backgroundTextStyle": "light",

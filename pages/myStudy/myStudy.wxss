@@ -3,12 +3,13 @@
 .book {
   display: flex;
   justify-content: space-between;
-  padding:0 20rpx;
+  padding:20rpx 20rpx 40rpx;
 }
 
 .book .box-l .img {
   width: 230rpx;
   height: 320rpx;
+  box-shadow:0 0 20rpx 0 #000;
 }
 
 .book .box-r {
@@ -23,3 +24,42 @@
   font-size: 16px;
   color: #333;
 }
+
+.box-r .book-total {
+  font-size: 14px;
+  color: #666;
+}
+
+.box-r .book-progress {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+}
+
+.progress {
+  width: 320rpx;
+}
+
+.box-r .book-last {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #666;
+}
+
+.box-r .book-btn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.box-r .book-btn .btn {
+  margin: 0;
+  width: 180rpx;
+  font-size: 12px;
+  background: #f9f9f9;
+  text-align: center;
+  color: #333;
+  border: 1rpx solid #f9f9f9;
+}
+
