@@ -1,0 +1,25 @@
+<!--pages/myStudy/myStudy.wxml-->
+<view>
+  <view wx:for="{{bookData}}" wx:key="{{index}}" class='book'>
+    <view class='box-l'>
+      <image src='{{item.book.img}}' class='img'></image>
+    </view>
+    <view class='box-r'>
+      <view class='book-title'>{{item.book.title}}</view>
+      <view class='book-total'>书籍{{item.title.index}}/{{item.title.total}}章节</view>
+      <view class='book-progress'>
+        <progress percent="{{(item.title.index)/(item.title.total)*100}}" class='progress'></progress>
+        <text>已看{{}}</text>
+      </view>
+      <view class='book-last'>
+        <text class=''>上次查看：{{item.title.title}}</text>
+        <text class=''>{{item.updatedTime}}</text>
+      </view>
+      <view class='book-btn'>
+        <button class='read-more'>继续阅读</button>
+        <button class='read-detail'>查看文档</button>
+      </view>
+    </view>
+  </view>
+</view>
+

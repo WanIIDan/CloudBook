@@ -1,5 +1,5 @@
 //index.js
-import {fetch} from "../../utils/util.js"
+import {fetch,login} from "../../utils/util.js"
 const app = getApp()
 
 Page({
@@ -10,36 +10,67 @@ Page({
     autoplay: true,
     interval: 5000,
     duration: 500,
-    isLoading:false
+    isLoading:false,
+    updateTime:"",
+    pn:1,
+    hasMore:true
   },
   
   onLoad() {
-    this.getData(),
-    this.getContent()
+    this.getAllData()
+    login()
   },
 
   getData() {
-    this.setData({
-      isLoading:true
-    })
-    fetch.get("/swiper").then(res=>{
-      console.log(res)
+    return new Promise((resolve,reject)=>{
       this.setData({
-        swiperData:res.data,
-        isLoading:false
+        isLoading: true
       })
-    }).catch(err=>{
-      this.setData({
-        isLoading:false
+      fetch.get("/swiper").then(res => {
+        resolve()
+        console.log(res)
+        this.setData({
+          swiperData: res.data,
+          isLoading: false
+        })
+      }).catch(err => {
+        reject()
+        this.setData({
+          isLoading: false
+        })
       })
     })
   },
 
   getContent() {
-    fetch.get("/category/books").then(res=>{
-      console.log(res)
-      this.setData({
-        mainContent:res.data  
+    return new Promise((resolve,reject)=>{
+      fetch.get("/category/books").then(res => {
+        resolve()
+        console.log(res)
+        this.setData({
+          mainContent: res.data,
+        })
+      })
+    })
+  },
+
+  getAllData() {
+    return new Promise((resolve)=>{
+      Promise.all([...this.getData(), ...this.getContent()]).then(() => {
+        resolve()
+      })
+    })
+  },
+
+  getMoreContent() {
+    return new Promise((resolve, reject) => {
+      fetch.get("/category/books",{pn:this.data.pn}).then(res => {
+        console.log(res)
+        let newArr = [...this.data.mainContent,...res.data]
+        this.setData({
+          mainContent: newArr,
+        })
+        resolve(res)        
       })
     })
   },
@@ -50,6 +81,31 @@ Page({
     wx.navigateTo({
       url: `/pages/detail/detail?id=${id}`
     })
+  },
+
+  onPullDownRefresh() {
+    this.getAllData().then(() => {
+      this.setData({
+        hasMore:true,
+        pn:1
+      })
+      wx.stopPullDownRefresh()
+    })
+  },
+
+  onReachBottom() {
+    if (this.data.hasMore){
+      this.setData({
+        pn:this.data.pn+1
+      })
+      this.getMoreContent().then(res => {
+        if (res.data.length < 2) {
+          this.setData({
+            hasMore: false
+          })
+        }
+      })
+    } 
   }
 
 })

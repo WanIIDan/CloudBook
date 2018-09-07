@@ -3,12 +3,36 @@
     "pages/index/index",
     "pages/detail/detail",
     "pages/catalog/catalog",
-    "pages/book/book"
+    "pages/book/book",
+    "pages/myStudy/myStudy",
+    "pages/center/center"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "云书",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/tab/shouye.png",
+        "selectedIconPath": "/static/tab/shouye1.png"
+      },
+      {
+        "pagePath": "pages/myStudy/myStudy",
+        "text": "我的学习",
+        "iconPath": "/static/tab/study.png",
+        "selectedIconPath": "/static/tab/study1.png"
+      },
+      {
+        "pagePath": "pages/center/center",
+        "text": "个人中心",
+        "iconPath": "/static/tab/center.png",
+        "selectedIconPath": "/static/tab/center1.png"
+      }
+    ]
   }
 }

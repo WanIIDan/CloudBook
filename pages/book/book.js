@@ -32,11 +32,7 @@ Page({
         isShow:false
       })
       console.log(res)
-      // let data = app.towxml.toJson(res.data.article.content, 'markdown')
-      //设置文档显示主题，默认'light'
-      // data.theme = 'dark';
       this.setData({
-        // article: data,
         article: res.data.article.content,
         title:res.data.title,
         isLoading: false,

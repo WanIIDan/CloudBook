@@ -1,0 +1,25 @@
+/* pages/myStudy/myStudy.wxss */
+
+.book {
+  display: flex;
+  justify-content: space-between;
+  padding:0 20rpx;
+}
+
+.book .box-l .img {
+  width: 230rpx;
+  height: 320rpx;
+}
+
+.book .box-r {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  
+  margin-left: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.box-r .book-title {
+  font-size: 16px;
+  color: #333;
+}

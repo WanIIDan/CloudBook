@@ -3,7 +3,7 @@
   padding: 0 20rpx;
 } 
 
-.container .loading {
+.loading {
   position: fixed;
   left: 50%;
   top: 50%;

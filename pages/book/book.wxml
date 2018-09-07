@@ -1,12 +1,10 @@
 <!--pages/book/book.wxml-->
-<import src="/towxml/entry.wxml" />
 
 <view class='book'>
   <image src='/static/img/Cube-1.2s-200px.svg' class='loading' wx:if="{{isLoading}}"></image>
   <view wx:else>
 
     <view class='book-content' style='{{"font-size:"+font+"rpx"}}'>
-      <!-- <template is="entry" data="{{...article}}" /> -->
       <wemark md="{{article}}"  highlight type="wemark"></wemark>
     </view>
 
